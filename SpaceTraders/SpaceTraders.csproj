@@ -15,5 +15,26 @@
         <Watch Include="..\**\*.razor" />
         <Watch Include="..\**\*.scss" />
         <Watch Include="..\**\*.cs" />
+        <None Update="**\*.css" watch="false" />
     </ItemGroup>
+    
+    <ItemGroup>
+      <Folder Include="Styles\Core" />
+    </ItemGroup>
+
+    <!-- Compile SCSS files into CSS -->
+    <ItemGroup>
+        <ComponentScssFiles Include="**/*/*.scss" Exclude="node_modules/**;wwwroot/**;Styles/**" />
+    </ItemGroup>
+
+    <Target Name="CompileGlobalSass" BeforeTargets="Compile">
+        <Message Text="Compiling global SCSS files" Importance="high" />
+        <Exec Command="npm run sass SpaceTraders/Styles SpaceTraders/wwwroot/css" />
+    </Target>
+    
+    <Target Name="CompileComponentSass" BeforeTargets="CompileGlobalSass">
+        <Message Text="Compiling Component SCSS files" Importance="high" />
+        <Exec Condition="!$([System.Text.RegularExpressions.Regex]::IsMatch('%(ComponentScssFiles.Identity)', `.*[/\\]_.*`))" Command="npm run sass --style=compressed --no-source-map --load-path=Styles/Core SpaceTraders/%(ComponentScssFiles.Identity) SpaceTraders/%(relativedir)%(filename).css" />
+    </Target>
+    
 </Project>

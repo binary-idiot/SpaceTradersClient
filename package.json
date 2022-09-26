@@ -1,0 +1,22 @@
+{
+  "name": "spacetraders",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/binary-idiot/SpaceTradersClient.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/binary-idiot/SpaceTradersClient/issues"
+  },
+  "homepage": "https://github.com/binary-idiot/SpaceTradersClient#readme",
+  "devDependencies": {
+    "sass": "^1.55.0"
+  }
+}
