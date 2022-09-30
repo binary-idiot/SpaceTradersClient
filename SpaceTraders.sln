@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceTraders", "SpaceTraders\SpaceTraders.csproj", "{C07DDCAE-131C-4B13-B14D-73A63685B348}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceTraders.Test", "SpaceTraders.Test\SpaceTraders.Test.csproj", "{05C03FC6-4227-49CF-8669-A183057ADFDF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{C07DDCAE-131C-4B13-B14D-73A63685B348}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C07DDCAE-131C-4B13-B14D-73A63685B348}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C07DDCAE-131C-4B13-B14D-73A63685B348}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05C03FC6-4227-49CF-8669-A183057ADFDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05C03FC6-4227-49CF-8669-A183057ADFDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05C03FC6-4227-49CF-8669-A183057ADFDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05C03FC6-4227-49CF-8669-A183057ADFDF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
