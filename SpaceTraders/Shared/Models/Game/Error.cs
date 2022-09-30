@@ -1,6 +1,6 @@
-﻿namespace SpaceTraders.Shared.Models;
+﻿namespace SpaceTraders.Shared.Models.Game;
 
-public class GameError
+public class Error
 {
 	public string Message { get; set; }
 	public int Code { get; set; }
