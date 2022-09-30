@@ -26,7 +26,20 @@ public class ApiQueryTests
 				{"other", "false"}
 			}
 		};
+		
 		var queryStr = await query.BuildQuery();
 		Assert.AreEqual("/test?param=test&other=false", queryStr);
+	}
+
+	[Test]
+	public async Task BuildQueryNoParamsTest()
+	{
+		var query = new ApiQuery()
+		{
+			Endpoint = "/test"
+		};
+		
+		var queryStr = await query.BuildQuery();
+		Assert.AreEqual("/test", queryStr);
 	}
 }
