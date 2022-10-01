@@ -10,7 +10,7 @@ public static class ServiceCollectionExtensions
 
 		foreach (var type in typesToRegister)
 		{
-			services.AddTransient(type.GetInterfaces().First(), type);
+			services.AddTransient(type, type);
 		}
 
 		return services;
