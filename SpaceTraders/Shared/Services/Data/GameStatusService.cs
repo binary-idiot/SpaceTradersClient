@@ -19,6 +19,14 @@ public class GameStatusService : IDataService
 			Endpoint = "game/status"
 		});
 
-		return response.Result;
+		if (response.Success)
+		{
+			return response.Result;
+		}
+		
+		return new GameStatus()
+		{
+			Status = "Error connecting to game"
+		};
 	}
 }

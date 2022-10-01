@@ -15,5 +15,4 @@ builder.Services.AddHttpClient<GameApiService>(client =>
 
 builder.Services.RegisterTransientServices<IDataService>();
 
-
 await builder.Build().RunAsync();
