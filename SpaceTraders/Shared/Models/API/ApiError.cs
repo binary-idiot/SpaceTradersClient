@@ -1,4 +1,4 @@
-﻿namespace SpaceTraders.Shared.Services.API;
+﻿namespace SpaceTraders.Shared.Models.API;
 
 public abstract class ApiError
 {

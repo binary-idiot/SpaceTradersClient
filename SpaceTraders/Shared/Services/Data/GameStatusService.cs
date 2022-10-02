@@ -1,4 +1,5 @@
-﻿using SpaceTraders.Shared.Models.Game;
+﻿using SpaceTraders.Shared.Models.API;
+using SpaceTraders.Shared.Models.Game;
 using SpaceTraders.Shared.Services.API;
 
 namespace SpaceTraders.Shared.Services.Data;

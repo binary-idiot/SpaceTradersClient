@@ -1,4 +1,6 @@
-﻿namespace SpaceTraders.Shared.Services.API;
+﻿using SpaceTraders.Shared.Models.API;
+
+namespace SpaceTraders.Shared.Services.API;
 
 public interface IApiService
 {
