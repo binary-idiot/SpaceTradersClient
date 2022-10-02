@@ -4,7 +4,7 @@ using SpaceTraders.Shared.Models.API;
 
 namespace SpaceTraders.Shared.Services.API;
 
-public abstract class ApiService<TError> : IApiService
+public abstract class ApiService<TError> : IApiService where TError : ApiError
 {
 	protected readonly HttpClient _client;
 	protected readonly ILogger _logger;
