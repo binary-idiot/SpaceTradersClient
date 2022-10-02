@@ -6,10 +6,12 @@ namespace SpaceTraders.Shared.Services.API;
 public abstract class ApiService<TError> : IApiService
 {
 	protected readonly HttpClient _client;
+	protected readonly ILogger _logger;
 
-	public ApiService(HttpClient client)
+	public ApiService(HttpClient client, ILogger logger)
 	{
 		_client = client;
+		_logger = logger;
 	}
 	
 	public virtual async Task<ApiResponse<TResult>> Get<TResult>(ApiQuery apiQuery)
@@ -39,6 +41,7 @@ public abstract class ApiService<TError> : IApiService
 
 	protected async Task<ApiResponse<TResult>> SendAsync<TResult>(HttpRequestMessage request)
 	{
+		_logger.LogDebug($"Sending {request.Method} request to: {request.RequestUri}");
 		HttpResponseMessage response = await _client.SendAsync(request);
 
 		ApiResponse<TResult> apiResponse = new ApiResponse<TResult>()
@@ -49,12 +52,15 @@ public abstract class ApiService<TError> : IApiService
 		if (apiResponse.Success)
 		{
 			apiResponse.Result = await response.Content.ReadFromJsonAsync<TResult>();
+			_logger.LogDebug($"Request to {request.RequestUri} successful with code {response.StatusCode}");
+			return apiResponse;
 		}
-		else if (apiResponse.ClientError)
+		
+		if (apiResponse.ClientError)
 		{
 			apiResponse.Error = await response.Content.ReadFromJsonAsync<TError>();
 		}
-
+		_logger.LogWarning($"Error in request to {request.RequestUri}: {(string.IsNullOrWhiteSpace(apiResponse.Error.ToString()) ? response.ReasonPhrase : apiResponse.Error)}");
 		return apiResponse;
 	}
 
