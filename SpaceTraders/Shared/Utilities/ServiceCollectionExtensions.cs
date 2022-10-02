@@ -2,7 +2,7 @@
 
 public static class ServiceCollectionExtensions
 {
-	public static IServiceCollection RegisterTransientServices<TInterface>(this IServiceCollection services)
+	public static IServiceCollection AddTransientServicesWithInterface<TInterface>(this IServiceCollection services)
 	{
 		IEnumerable<Type> typesToRegister = typeof(TInterface).Assembly
 			.GetTypes()

@@ -16,6 +16,6 @@ builder.Services.AddTransient<GameApiService>();
 builder.Services.AddHttpClient<GameApiService>(client =>
 	client.BaseAddress = new Uri(builder.Configuration["GameApiBase"]));
 
-builder.Services.RegisterTransientServices<IDataService>();
+builder.Services.AddTransientServicesWithInterface<IDataService>();
 
 await builder.Build().RunAsync();
