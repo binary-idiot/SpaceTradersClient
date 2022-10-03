@@ -1,7 +1,6 @@
-﻿using SpaceTraders.Shared.Models.API;
-using SpaceTraders.Shared.Services.API;
+﻿using SpaceTraders.Models.API;
 
-namespace SpaceTraders.Shared.Models.Game;
+namespace SpaceTraders.Models.Game;
 
 public class Error : ApiError
 {

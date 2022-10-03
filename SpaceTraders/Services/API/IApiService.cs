@@ -1,6 +1,6 @@
-﻿using SpaceTraders.Shared.Models.API;
+﻿using SpaceTraders.Models.API;
 
-namespace SpaceTraders.Shared.Services.API;
+namespace SpaceTraders.Services.API;
 
 public interface IApiService
 {

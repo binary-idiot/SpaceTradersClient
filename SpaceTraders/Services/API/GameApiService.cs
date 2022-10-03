@@ -1,7 +1,6 @@
-﻿using SpaceTraders.Shared.Models;
-using SpaceTraders.Shared.Models.Game;
+﻿using SpaceTraders.Models.Game;
 
-namespace SpaceTraders.Shared.Services.API;
+namespace SpaceTraders.Services.API;
 
 public class GameApiService : ApiService<Error>
 {

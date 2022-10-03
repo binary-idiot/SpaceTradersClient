@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace SpaceTraders.Shared.Models.API;
+namespace SpaceTraders.Models.API;
 
 public class ApiResponse<TResult>
 {

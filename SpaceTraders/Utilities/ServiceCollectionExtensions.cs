@@ -1,4 +1,4 @@
-﻿namespace SpaceTraders.Shared.Utilities;
+﻿namespace SpaceTraders.Utilities;
 
 public static class ServiceCollectionExtensions
 {

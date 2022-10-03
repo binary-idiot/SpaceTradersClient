@@ -2,8 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using NUnit.Framework;
-using SpaceTraders.Shared.Models.API;
-using SpaceTraders.Shared.Services.API;
+using SpaceTraders.Models.API;
 
 namespace SpaceTraders.Test;
 

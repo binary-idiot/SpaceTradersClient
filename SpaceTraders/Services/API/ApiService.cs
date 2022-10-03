@@ -1,8 +1,7 @@
-﻿using System.Net.Http;
-using System.Net.Http.Json;
-using SpaceTraders.Shared.Models.API;
+﻿using System.Net.Http.Json;
+using SpaceTraders.Models.API;
 
-namespace SpaceTraders.Shared.Services.API;
+namespace SpaceTraders.Services.API;
 
 public abstract class ApiService<TError> : IApiService where TError : ApiError
 {
@@ -17,30 +16,30 @@ public abstract class ApiService<TError> : IApiService where TError : ApiError
 	
 	public virtual async Task<ApiResponse<TResult>> Get<TResult>(ApiQuery apiQuery)
 	{
-		return await SendAsync<TResult>(await BuildRequest(new HttpMethod("GET"), apiQuery));
+		return await Send<TResult>(await BuildRequest(new HttpMethod("GET"), apiQuery));
 	}
 
 	public virtual async Task<ApiResponse<TResult>> Post<TResult, TBody>(ApiQuery<TBody> apiQuery)
 	{
-		return await SendAsync<TResult>(await BuildRequest(new HttpMethod("POST"), apiQuery));	
+		return await Send<TResult>(await BuildRequest(new HttpMethod("POST"), apiQuery));	
 	}
 
 	public virtual async Task<ApiResponse<TResult>> Put<TResult, TBody>(ApiQuery<TBody> apiQuery)
 	{
-		return await SendAsync<TResult>(await BuildRequest(new HttpMethod("PUT"), apiQuery));	
+		return await Send<TResult>(await BuildRequest(new HttpMethod("PUT"), apiQuery));	
 	}
 
 	public virtual async Task<ApiResponse<TResult>> Patch<TResult, TBody>(ApiQuery<TBody> apiQuery)
 	{
-		return await SendAsync<TResult>(await BuildRequest(new HttpMethod("PATCH"), apiQuery));	
+		return await Send<TResult>(await BuildRequest(new HttpMethod("PATCH"), apiQuery));	
 	}
 
 	public virtual async Task<ApiResponse<TResult>> Delete<TResult>(ApiQuery apiQuery)
 	{
-		return await SendAsync<TResult>(await BuildRequest(new HttpMethod("DELETE"), apiQuery));	
+		return await Send<TResult>(await BuildRequest(new HttpMethod("DELETE"), apiQuery));	
 	}
 
-	protected async Task<ApiResponse<TResult>> SendAsync<TResult>(HttpRequestMessage request)
+	protected async Task<ApiResponse<TResult>> Send<TResult>(HttpRequestMessage request)
 	{
 		_logger.LogDebug($"Sending {request.Method} request to: {request.RequestUri}");
 		HttpResponseMessage response = await _client.SendAsync(request);
