@@ -1,0 +1,53 @@
+﻿@using SpaceTraders.State
+@using Fluxor
+@using SpaceTraders.Models.User
+@using SpaceTraders.State.LoginFeature
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+@inject IState<LoginState> LoginState
+@inject IDispatcher Dispatcher
+@inject IActionSubscriber ActionSubscriber
+
+<EditForm Model="Login" OnValidSubmit="HandleValidSubmit">
+    @if (SignUp)
+    {
+        <label>
+            Username
+            <input @bind="Login.Username" type="text">
+        </label>
+        <button type="submit">Register</button>
+        <button @onclick="() => SignUp = !SignUp">Switch to log in</button>
+    }
+    else
+    {
+        <label>
+            Token
+            <input name="login-token" @bind="Login.Token" type="text">
+        </label>
+        <button type="submit">Log in</button>
+        <button @onclick="() => SignUp = !SignUp">Switch to register</button>
+    }
+</EditForm>
+
+@code {
+    private bool SignUp { get; set; }
+    private Login Login { get; set; }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        
+        SignUp = string.IsNullOrWhiteSpace(LoginState.Value.Login?.Token);
+        Login = LoginState.Value.Login ?? new Login();
+        
+        ActionSubscriber.SubscribeToAction<LoadLoginSuccessAction>(this, action =>
+        {
+            Login = action.Login;
+        });
+    }
+
+    private void HandleValidSubmit()
+    {
+        Dispatcher.Dispatch((SignUp) ? new RegisterAction(Login) : new LoginAction(Login));
+    }
+
+}
