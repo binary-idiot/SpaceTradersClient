@@ -1,4 +1,4 @@
-﻿namespace SpaceTraders.State;
+﻿namespace SpaceTraders.Shared.State;
 
 public abstract class FailureAction : IAction
 {

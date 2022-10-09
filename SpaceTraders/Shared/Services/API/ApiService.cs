@@ -1,7 +1,7 @@
 ﻿using System.Net.Http.Json;
-using SpaceTraders.Models.API;
+using SpaceTraders.Shared.Models.API;
 
-namespace SpaceTraders.Services.API;
+namespace SpaceTraders.Shared.Services.API;
 
 public abstract class ApiService<TError> : IApiService where TError : ApiError
 {

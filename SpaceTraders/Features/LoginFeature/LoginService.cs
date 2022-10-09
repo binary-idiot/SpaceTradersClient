@@ -1,7 +1,7 @@
 ﻿using Blazored.LocalStorage;
-using SpaceTraders.Models.User;
+using SpaceTraders.Shared.Services;
 
-namespace SpaceTraders.Services.Data;
+namespace SpaceTraders.Features.LoginFeature;
 
 public class LoginService : IDataService
 {

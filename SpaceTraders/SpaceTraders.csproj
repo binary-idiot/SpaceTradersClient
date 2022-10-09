@@ -9,7 +9,7 @@
     <ItemGroup>
         <PackageReference Include="Blazored.LocalStorage" Version="4.3.0-preview.1" />
         <PackageReference Include="Fluxor.Blazor.Web" Version="5.5.0" />
-        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.1" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.9" />
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.1" PrivateAssets="all" />
         <PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0-rc.1.22426.10" />
     </ItemGroup>
@@ -28,9 +28,6 @@
     <!-- Compile SCSS files into CSS -->
     <ItemGroup>
         <ComponentScssFiles Include="**/*/*.scss" Exclude="node_modules/**;wwwroot/**;Styles/**" />
-    </ItemGroup>
-    <ItemGroup>
-      <_ContentIncludedByDefault Remove="wwwroot\sample-data\weather.json" />
     </ItemGroup>
 
     <Target Name="CompileGlobalSass" BeforeTargets="Compile">

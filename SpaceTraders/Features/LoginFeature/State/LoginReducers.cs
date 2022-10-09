@@ -1,7 +1,6 @@
 ﻿using Fluxor;
-using SpaceTraders.Models.User;
 
-namespace SpaceTraders.State.LoginFeature;
+namespace SpaceTraders.Features.LoginFeature.State;
 
 public static class LoginReducers
 {

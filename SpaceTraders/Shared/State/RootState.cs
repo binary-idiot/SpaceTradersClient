@@ -1,6 +1,4 @@
-﻿using Fluxor;
-
-namespace SpaceTraders.State;
+﻿namespace SpaceTraders.Shared.State;
 
 public abstract class RootState
 {

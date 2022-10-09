@@ -3,8 +3,8 @@ using Fluxor;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using SpaceTraders;
-using SpaceTraders.Services.API;
-using SpaceTraders.Services.Data;
+using SpaceTraders.Shared.Services;
+using SpaceTraders.Shared.Services.API;
 using SpaceTraders.Utilities;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);

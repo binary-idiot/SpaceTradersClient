@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace SpaceTraders.Models.User;
+namespace SpaceTraders.Features.LoginFeature;
 
 public class Login
 {

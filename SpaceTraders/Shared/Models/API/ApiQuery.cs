@@ -1,4 +1,4 @@
-﻿namespace SpaceTraders.Models.API;
+﻿namespace SpaceTraders.Shared.Models.API;
 
 public class ApiQuery
 {

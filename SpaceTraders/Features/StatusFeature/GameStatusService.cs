@@ -1,8 +1,8 @@
-﻿using SpaceTraders.Models.API;
-using SpaceTraders.Models.Game;
-using SpaceTraders.Services.API;
+﻿using SpaceTraders.Shared.Models.API;
+using SpaceTraders.Shared.Services;
+using SpaceTraders.Shared.Services.API;
 
-namespace SpaceTraders.Services.Data;
+namespace SpaceTraders.Features.StatusFeature;
 
 public class GameStatusService : IDataService
 {

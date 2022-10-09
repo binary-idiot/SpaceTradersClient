@@ -1,6 +1,6 @@
-﻿using SpaceTraders.Models.User;
+﻿using SpaceTraders.Shared.State;
 
-namespace SpaceTraders.State.LoginFeature;
+namespace SpaceTraders.Features.LoginFeature.State;
 
 public abstract class BaseLoginAction : IAction
 {

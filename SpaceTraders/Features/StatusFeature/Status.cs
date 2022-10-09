@@ -1,4 +1,4 @@
-﻿namespace SpaceTraders.Models.Game;
+﻿namespace SpaceTraders.Features.StatusFeature;
 
 public class GameStatus
 {
