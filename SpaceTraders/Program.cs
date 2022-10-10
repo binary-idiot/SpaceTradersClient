@@ -8,7 +8,7 @@ using SpaceTraders.Shared.Services.API;
 using SpaceTraders.Utilities;
 
 #if DEBUG
-await Task.Delay(5000);
+await Task.Delay(1000);
 #endif
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
