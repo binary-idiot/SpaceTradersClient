@@ -6,6 +6,8 @@
 @inject IDispatcher Dispatcher
 @inject IActionSubscriber ActionSubscriber
 
+<h3>@(LoginState.Value.IsLoggedIn ? "Logged In" : "Logged Out")</h3>
+
 <EditForm Model="Login" OnValidSubmit="HandleValidSubmit">
     @if (SignUp)
     {
@@ -34,14 +36,14 @@
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        
-        SignUp = string.IsNullOrWhiteSpace(LoginState.Value.Login?.Token);
-        Login = LoginState.Value.Login ?? new Login();
+        UpdateLogin(LoginState.Value.Login);
         
         ActionSubscriber.SubscribeToAction<LoadLoginSuccessAction>(this, action =>
         {
-            Login = action.Login;
+            UpdateLogin(action.Login);
+            InvokeAsync(() => StateHasChanged());
         });
+        
         Dispatcher.Dispatch(new LoadLoginAction());
     }
 
@@ -50,4 +52,9 @@
         Dispatcher.Dispatch((SignUp) ? new RegisterAction(Login) : new LoginAction(Login));
     }
 
+    private void UpdateLogin(Login? login)
+    {
+        SignUp = string.IsNullOrWhiteSpace(login?.Token);
+        Login = login ?? new Login();
+    }
 }
