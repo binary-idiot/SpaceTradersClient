@@ -7,6 +7,10 @@ using SpaceTraders.Shared.Services;
 using SpaceTraders.Shared.Services.API;
 using SpaceTraders.Utilities;
 
+#if DEBUG
+await Task.Delay(5000);
+#endif
+
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
@@ -14,6 +18,7 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 builder.Services.AddBlazoredLocalStorage();
 builder.Services.AddFluxor(options => 
 	options.ScanAssemblies(typeof(Program).Assembly)
+		.UseReduxDevTools()
 );
 
 builder.Services.AddTransient<GameApiService>();
