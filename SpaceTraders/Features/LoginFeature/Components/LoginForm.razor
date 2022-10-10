@@ -42,6 +42,7 @@
         {
             Login = action.Login;
         });
+        Dispatcher.Dispatch(new LoadLoginAction());
     }
 
     private void HandleValidSubmit()
