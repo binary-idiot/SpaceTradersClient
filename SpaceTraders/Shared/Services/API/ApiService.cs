@@ -64,7 +64,7 @@ public abstract class ApiService<TError> : IApiService where TError : ApiError
 		return apiResponse;
 	}
 
-	protected async Task<HttpRequestMessage> BuildRequest<TResult>(HttpMethod method, ApiQuery<TResult> apiQuery)
+	protected async Task<HttpRequestMessage> BuildRequest<TBody>(HttpMethod method, ApiQuery<TBody> apiQuery)
 	{
 		 return new HttpRequestMessage()
 		{
