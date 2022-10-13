@@ -35,7 +35,6 @@
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        UpdateLogin(LoginState.Value.Login);
         
         ActionSubscriber.SubscribeToAction<LoadLoginSuccessAction>(this, action =>
         {
@@ -43,7 +42,11 @@
             InvokeAsync(() => StateHasChanged());
         });
         
-        Dispatcher.Dispatch(new LoadLoginAction());
+        UpdateLogin(LoginState.Value.Login);
+        if (string.IsNullOrWhiteSpace(LoginState.Value.Login?.Token))
+        {
+            Dispatcher.Dispatch(new LoadLoginAction());
+        }
     }
 
     private void HandleValidSubmit()

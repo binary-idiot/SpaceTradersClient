@@ -1,10 +1,11 @@
 ﻿@using SpaceTraders.Features.StatusFeature.Components
 @using SpaceTraders.Features.LoginFeature.Components
 @page "/"
+@layout AnonymousLayout
 
-<PageTitle>Home</PageTitle>
+<PageTitle>Landing</PageTitle>
 
-<h1>Hello, world!</h1>
+<NavLink href="/Home">Home</NavLink>
 
 <Status />
 <LoginForm />

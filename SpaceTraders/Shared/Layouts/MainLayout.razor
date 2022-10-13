@@ -1,4 +1,8 @@
 ﻿@using SpaceTraders.Shared.Components.Nav
+@using SpaceTraders.Features.LoginFeature.State
+@using Fluxor
+@inject NavigationManager NavigationManager
+@inject IState<LoginState> LoginState
 @inherits LayoutComponentBase
 
 <div class="page">
@@ -16,3 +20,16 @@
         </article>
     </main>
 </div>
+
+@code
+{
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        if (!LoginState.Value.IsLoggedIn)
+        {
+            NavigationManager.NavigateTo("/");
+        }
+    }
+}
