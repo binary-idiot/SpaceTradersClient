@@ -1,4 +1,7 @@
 ﻿using Fluxor;
+using SpaceTraders.Features.AccountFeature;
+using SpaceTraders.Shared.Models;
+using SpaceTraders.Shared.Models.API;
 
 namespace SpaceTraders.Features.LoginFeature.State;
 
@@ -35,14 +38,25 @@ public class LoginEffects
 		using (IServiceScope scope = _serviceScopeFactory.CreateScope())
 		{
 			LoginService loginService = scope.ServiceProvider.GetService<LoginService>();
-			if (loginService is not null)
+			AccountService accountService = scope.ServiceProvider.GetService<AccountService>();
+			if (loginService != null && accountService != null)
 			{
-				await loginService.SetSavedLogin(action.Login);
-				dispatcher.Dispatch(new LoginSuccessAction(action.Login));
+				ApiResponse<Account> accountResponse = await accountService.GetAccount();
+
+				if (accountResponse.Success)
+				{
+					action.Login.Username = accountResponse.Result.Username;
+					await loginService.SetSavedLogin(action.Login);
+					dispatcher.Dispatch(new LoginSuccessAction(action.Login));
+				}
+				else
+				{
+					dispatcher.Dispatch(new LoginFailureAction(((Error)accountResponse.Error).Message));
+				}
 			}
 			else
 			{
-				dispatcher.Dispatch(new LoginFailureAction("LoginService is null"));
+				dispatcher.Dispatch(new LoginFailureAction("Could not load required services"));
 			}
 		}
 	}
