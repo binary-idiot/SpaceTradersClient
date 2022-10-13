@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using SpaceTraders;
 using SpaceTraders.Shared.Services;
 using SpaceTraders.Shared.Services.API;
-using SpaceTraders.Utilities;
+using SpaceTraders.Shared.Utilities;
 
 #if DEBUG
 await Task.Delay(1000);
