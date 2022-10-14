@@ -22,7 +22,6 @@ builder.Services.AddFluxor(options =>
 );
 
 builder.Services.AddTransient<GameAuthHandler>();
-builder.Services.AddTransient<GameApiService>();
 builder.Services.AddHttpClient<GameApiService>(client =>
 	client.BaseAddress = new Uri(builder.Configuration["GameApiBase"])
 ).AddHttpMessageHandler<GameAuthHandler>();
