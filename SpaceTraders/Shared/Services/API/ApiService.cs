@@ -66,20 +66,34 @@ public abstract class ApiService<TError> : IApiService where TError : ApiError
 
 	protected async Task<HttpRequestMessage> BuildRequest<TBody>(HttpMethod method, ApiQuery<TBody> apiQuery)
 	{
-		 return new HttpRequestMessage()
+		HttpRequestMessage request = new HttpRequestMessage()
 		{
 			Method = method,
-			RequestUri = new Uri(_client.BaseAddress, (await apiQuery.BuildQuery())),
-			Content = JsonContent.Create(apiQuery.Body)
+			RequestUri = new Uri(_client.BaseAddress, (await apiQuery.GetEndpointWithParams())),
+			Content = JsonContent.Create(apiQuery.Body),
 		};
+
+		return AddRequestHeaders(request, apiQuery.Headers);
 	}
 	
 	protected async Task<HttpRequestMessage> BuildRequest(HttpMethod method, ApiQuery apiQuery)
 	{
-		return new HttpRequestMessage()
+		HttpRequestMessage request = new HttpRequestMessage()
 		{
 			Method = method,
-			RequestUri = new Uri(_client.BaseAddress, (await apiQuery.BuildQuery()))
+			RequestUri = new Uri(_client.BaseAddress, (await apiQuery.GetEndpointWithParams()))
 		};
+		
+		return AddRequestHeaders(request, apiQuery.Headers);
+	}
+
+	protected HttpRequestMessage AddRequestHeaders(HttpRequestMessage request, Dictionary<string, string> headers)
+	{
+		foreach (var (header, value) in headers)
+		{
+			request.Headers.Add(header, value);
+		}
+
+		return request;
 	}
 }

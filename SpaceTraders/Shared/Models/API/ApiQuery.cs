@@ -11,13 +11,15 @@ public class ApiQuery
 	}
 
 	public Dictionary<string, string> Params { get; set; }
+	public Dictionary<string, string> Headers { get; set; }
 
 	public ApiQuery()
 	{
 		_endpoint = String.Empty;
 		Params = new Dictionary<string, string>();
+		Headers = new Dictionary<string, string>();
 	}
-	public async Task<string> BuildQuery()
+	public async Task<string> GetEndpointWithParams()
 	{
 		if (Params.Count < 1)
 		{

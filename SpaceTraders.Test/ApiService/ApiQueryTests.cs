@@ -27,7 +27,7 @@ public class ApiQueryTests
 			}
 		};
 		
-		var queryStr = await query.BuildQuery();
+		var queryStr = await query.GetEndpointWithParams();
 		Assert.AreEqual("/test?param=test&other=false", queryStr);
 	}
 
@@ -39,7 +39,7 @@ public class ApiQueryTests
 			Endpoint = "/test"
 		};
 		
-		var queryStr = await query.BuildQuery();
+		var queryStr = await query.GetEndpointWithParams();
 		Assert.AreEqual("/test", queryStr);
 	}
 }
