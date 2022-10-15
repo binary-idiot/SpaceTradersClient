@@ -41,7 +41,7 @@ public class LoginEffects
 			AccountService accountService = scope.ServiceProvider.GetService<AccountService>();
 			if (loginService != null && accountService != null)
 			{
-				ApiResponse<Account> accountResponse = await accountService.GetAccount();
+				ApiResponse<Account> accountResponse = await accountService.GetAccount(action.Login.Token);
 
 				if (accountResponse.Success)
 				{

@@ -13,8 +13,11 @@ public class AccountService : IDataService
 		_apiService = apiService;
 	}
 
-	public async Task<ApiResponse<Account>> GetAccount()
+	public async Task<ApiResponse<Account>> GetAccount(string? token = "")
 	{
-		return await _apiService.Get<Account>(new ApiQuery() { Endpoint = "my/account" });
+		Dictionary<string, string> headers = (string.IsNullOrWhiteSpace(token))
+			? new Dictionary<string, string>()
+			: new Dictionary<string, string>() { { "Authorization", $"Bearer {token}" } };
+		return await _apiService.Get<Account>(new ApiQuery() { Endpoint = "my/account", Headers = headers});
 	}
 }
