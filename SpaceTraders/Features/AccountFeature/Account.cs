@@ -1,4 +1,6 @@
-﻿namespace SpaceTraders.Features.AccountFeature;
+﻿using SpaceTraders.Shared.Models;
+
+namespace SpaceTraders.Features.AccountFeature;
 
 public class Account
 {

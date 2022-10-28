@@ -21,6 +21,8 @@ builder.Services.AddFluxor(options =>
 		.UseReduxDevTools()
 );
 
+builder.Services.AddTransientServicesWithInterface<IModelMapper>(true);
+
 builder.Services.AddTransient<GameAuthHandler>();
 builder.Services.AddHttpClient<GameApiService>(client =>
 	client.BaseAddress = new Uri(builder.Configuration["GameApiBase"])
