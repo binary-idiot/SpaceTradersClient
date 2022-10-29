@@ -16,26 +16,26 @@ public class AccountEffects
 	[EffectMethod(typeof(GetAccountAction))]
 	public async Task HandleGetAccountAction(IDispatcher dispatcher)
 	{
-		using (IServiceScope scope = _serviceScopeFactory.CreateScope())
+		using IServiceScope scope = _serviceScopeFactory.CreateScope();
+		try
 		{
-			AccountService accountService = scope.ServiceProvider.GetService<AccountService>();
-			if (accountService != null)
-			{
-				ApiResponse<Account> accountResponse = await accountService.GetAccount();
+			AccountService accountService = scope.ServiceProvider.GetRequiredService<AccountService>();
+			ApiResponse<Account> accountResponse = await accountService.GetAccount();
 
-				if (accountResponse.Success)
-				{
-					dispatcher.Dispatch(new GetAccountSuccessAction(accountResponse.Result));
-				}
-				else
-				{
-					dispatcher.Dispatch(new GetAccountFailureAction(((Error)accountResponse.Error).Message));
-				}
+			if (accountResponse.Success)
+			{
+				dispatcher.Dispatch(new GetAccountSuccessAction(accountResponse.Result));
 			}
 			else
 			{
-				dispatcher.Dispatch(new GetAccountFailureAction("Could not load required services"));
+				throw new Exception(((Error)accountResponse.Error).Message);
 			}
+		}
+		catch(Exception ex)
+		{
+			ILogger<AccountEffects> logger = scope.ServiceProvider.GetRequiredService<ILogger<AccountEffects>>();
+			logger.LogError(ex.ToString());
+			dispatcher.Dispatch(new GetAccountFailureAction(ex.Message));
 		}
 	}
 }

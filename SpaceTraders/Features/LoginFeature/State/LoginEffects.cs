@@ -36,30 +36,30 @@ public class LoginEffects
 	[EffectMethod]
 	public async Task HandleLoginAction(LoginAction action, IDispatcher dispatcher)
 	{
-		using (IServiceScope scope = _serviceScopeFactory.CreateScope())
+		using IServiceScope scope = _serviceScopeFactory.CreateScope();
+		try
 		{
-			LoginService? loginService = scope.ServiceProvider.GetService<LoginService>();
-			AccountService? accountService = scope.ServiceProvider.GetService<AccountService>();
-			if (loginService != null && accountService != null)
-			{
-				ApiResponse<Account> accountResponse = await accountService.GetAccount(action.Login.Token);
+			LoginService? loginService = scope.ServiceProvider.GetRequiredService<LoginService>();
+			AccountService? accountService = scope.ServiceProvider.GetRequiredService<AccountService>();
+			ApiResponse<Account> accountResponse = await accountService.GetAccount(action.Login.Token);
 
-				if (accountResponse.Success)
-				{
-					action.Login.Username = accountResponse.Result.Username;
-					await loginService.SetSavedLogin(action.Login);
-					dispatcher.Dispatch(new LoginSuccessAction(action.Login));
-					dispatcher.Dispatch(new GetAccountSuccessAction(accountResponse.Result));
-				}
-				else
-				{
-					dispatcher.Dispatch(new LoginFailureAction(((Error)accountResponse.Error).Message));
-				}
+			if (accountResponse.Success)
+			{
+				action.Login.Username = accountResponse.Result.Username;
+				await loginService.SetSavedLogin(action.Login);
+				dispatcher.Dispatch(new LoginSuccessAction(action.Login));
+				dispatcher.Dispatch(new GetAccountSuccessAction(accountResponse.Result));
 			}
 			else
 			{
-				dispatcher.Dispatch(new LoginFailureAction("Could not load required services"));
+				throw new Exception(((Error)accountResponse.Error).Message);
 			}
+		}
+		catch (Exception ex)
+		{
+			ILogger<LoginEffects> logger = scope.ServiceProvider.GetRequiredService<ILogger<LoginEffects>>();
+			logger.LogError(ex.ToString());
+			dispatcher.Dispatch(new LoginFailureAction(ex.Message));
 		}
 	}
 }
