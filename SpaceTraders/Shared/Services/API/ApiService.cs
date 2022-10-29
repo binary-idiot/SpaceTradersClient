@@ -2,6 +2,7 @@
 using System.Text.Json;
 using SpaceTraders.Shared.Models.API;
 using SpaceTraders.Shared.Utilities;
+using SpaceTraders.Shared.Utilities.Mappers;
 
 namespace SpaceTraders.Shared.Services.API;
 

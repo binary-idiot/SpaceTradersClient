@@ -6,6 +6,7 @@ using SpaceTraders;
 using SpaceTraders.Shared.Services;
 using SpaceTraders.Shared.Services.API;
 using SpaceTraders.Shared.Utilities;
+using SpaceTraders.Shared.Utilities.Mappers;
 
 #if DEBUG
 await Task.Delay(1000);

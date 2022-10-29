@@ -1,6 +1,6 @@
 ﻿using System.Net.Http.Json;
 
-namespace SpaceTraders.Shared.Utilities;
+namespace SpaceTraders.Shared.Utilities.Mappers;
 
 public abstract class ModelMapper<TModel> : IModelMapper<TModel>
 {
