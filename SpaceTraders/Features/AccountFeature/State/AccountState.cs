@@ -1,7 +1,9 @@
-﻿using SpaceTraders.Shared.State;
+﻿using Fluxor;
+using SpaceTraders.Shared.State;
 
 namespace SpaceTraders.Features.AccountFeature.State;
 
+[FeatureState]
 public class AccountState : RootState
 {
 	public Account? Account { get; }
