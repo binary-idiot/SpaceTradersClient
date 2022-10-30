@@ -1,0 +1,16 @@
+﻿.status-indicator{
+  max-width: fit-content;
+  border-radius: 50%;
+  
+  &.status-loading{
+    background-color: yellow;
+  }
+  
+  &.status-online{
+    background-color: green;
+  }
+  
+  &.status-offline{
+    background-color: red;
+  }
+}

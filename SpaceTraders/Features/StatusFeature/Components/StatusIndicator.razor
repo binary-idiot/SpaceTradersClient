@@ -1,0 +1,24 @@
+﻿@inject GameStatusService StatusService
+
+<div class="status-indicator @CurrentStatus" >
+    <span>@Status.ToString()</span>
+</div>
+
+@code {
+    private enum StatusEnum
+    {
+        Loading,
+        Online,
+        Offline
+    }
+
+    private StatusEnum Status = StatusEnum.Loading;
+
+    private string CurrentStatus => $"status-{Status.ToString().ToLower()}";
+
+    protected override async Task OnInitializedAsync()
+    {
+        Status = (await StatusService.GetStatus()).IsOnline ? StatusEnum.Online : StatusEnum.Offline;
+    }
+
+}
