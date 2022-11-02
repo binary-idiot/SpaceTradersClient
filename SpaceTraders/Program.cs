@@ -1,4 +1,7 @@
 using Blazored.LocalStorage;
+using Blazorise;
+using Blazorise.Bootstrap5;
+using Blazorise.Icons.FontAwesome;
 using Fluxor;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -21,6 +24,13 @@ builder.Services.AddFluxor(options =>
 	options.ScanAssemblies(typeof(Program).Assembly)
 		.UseReduxDevTools()
 );
+
+builder.Services.AddBlazorise(options =>
+	{
+		options.Immediate = true;
+	})
+	.AddBootstrap5Providers()
+	.AddFontAwesomeIcons();
 
 builder.Services.AddTransientServicesWithInterface<IModelMapper>(true);
 

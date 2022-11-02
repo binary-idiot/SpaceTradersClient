@@ -1,4 +1,5 @@
 ﻿<Fluxor.Blazor.Web.StoreInitializer/>
+<ThemeProvider Theme="@_theme"></ThemeProvider>
 <Router AppAssembly="@typeof(App).Assembly">
     <Found Context="routeData">
         <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)"/>
@@ -11,3 +12,9 @@
         </LayoutView>
     </NotFound>
 </Router>
+
+@code
+{
+    private Theme _theme = new Theme() { };
+
+}
