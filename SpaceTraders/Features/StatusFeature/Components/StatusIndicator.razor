@@ -1,8 +1,6 @@
 ﻿@inject GameStatusService StatusService
 
-<div class="status-indicator @CurrentStatus" >
-    <span>@Status.ToString()</span>
-</div>
+<Badge Color="StatusColor" Pill>@StatusString</Badge>
 
 @code {
     private enum StatusEnum
@@ -13,8 +11,32 @@
     }
 
     private StatusEnum Status = StatusEnum.Loading;
+    
+    private string StatusString 
+    {
+        get
+        {
+            return Status switch 
+            {
+                StatusEnum.Loading => "Connecting to SpaceTraders...",
+                _ => $"SpaceTraders is {Status}"
+            };
+        }    
+    }
 
-    private string CurrentStatus => $"status-{Status.ToString().ToLower()}";
+    private Color StatusColor
+    {
+        get
+        {
+            return Status switch
+            {
+                StatusEnum.Online => Color.Success,
+                StatusEnum.Offline => Color.Danger,
+                StatusEnum.Loading => Color.Warning,
+                _ => Color.Warning
+            };
+        }
+    }
 
     protected override async Task OnInitializedAsync()
     {
