@@ -4,29 +4,25 @@
 @inject IState<LoginState> LoginState
 @inject IDispatcher Dispatcher
 @inject IActionSubscriber ActionSubscriber
-
-<h3>@(LoginState.Value.IsLoggedIn ? "Logged In" : "Logged Out")</h3>
-
-<EditForm Model="Login" OnValidSubmit="HandleValidSubmit">
-    @if (SignUp)
-    {
-        <label>
-            Username
-            <input @bind="Login.Username" type="text">
-        </label>
-        <button type="submit">Register</button>
-        <button @onclick="() => SignUp = !SignUp">Switch to log in</button>
-    }
-    else
-    {
-        <label>
-            Token
-            <input name="login-token" @bind="Login.Token" type="text">
-        </label>
-        <button type="submit">Log in</button>
-        <button @onclick="() => SignUp = !SignUp">Switch to register</button>
-    }
-</EditForm>
+<div class="login-form">
+    <EditForm Model="Login" OnValidSubmit="HandleValidSubmit">
+        <Field>
+            <FieldLabel>Username</FieldLabel>
+            <TextEdit @bind-Text="Login.Username" />
+        </Field>
+        
+        @if (!SignUp)
+        {
+            <Field>
+                <FieldLabel>Token</FieldLabel>
+                <TextEdit @bind-Text="Login.Token" />
+            </Field>
+        }
+        
+        <Button Type="ButtonType.Submit" Color="Color.Primary">@getModeString()</Button>
+        <Button @onclick="() => SwitchMode()">Switch to @getModeString(true).ToLower()</Button>
+    </EditForm>
+</div>
 
 @code {
     private bool SignUp { get; set; }
@@ -54,9 +50,19 @@
         Dispatcher.Dispatch((SignUp) ? new RegisterAction(Login) : new LoginAction(Login));
     }
 
-    private void UpdateLogin(Login? login)
+    private void SwitchMode()
+    {
+        UpdateLogin((SignUp) ? LoginState.Value.Login : null);
+    }
+    
+    private void UpdateLogin(Login? login = null)
     {
         SignUp = string.IsNullOrWhiteSpace(login?.Token);
         Login = login ?? new Login();
+    }
+
+    private string getModeString(bool unselected = false)
+    {
+        return (unselected ^ SignUp) ? "Register" : "Login";
     }
 }
