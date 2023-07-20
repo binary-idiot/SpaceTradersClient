@@ -17,7 +17,7 @@ public class GameStatusService : IDataService
 	{
 		ApiResponse<GameStatus> response = await _api.Get<GameStatus>(new ApiQuery()
 		{
-			Endpoint = "game/status"
+			Endpoint = ""
 		});
 
 		if (response.Success)
