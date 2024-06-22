@@ -29,7 +29,7 @@ public class GameStats
 public class Leaderboards
 {
 	public List<CreditLeaderboard> MostCredits { get; set; }
-	public List<CharEnumerator> MostSubmittedCharts { get; set; }
+	public List<ChartLeaderboard> MostSubmittedCharts { get; set; }
 	
 }
 
