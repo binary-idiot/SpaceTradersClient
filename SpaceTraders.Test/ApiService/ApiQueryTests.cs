@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using SpaceTraders.Shared.Models.API;
 
 namespace SpaceTraders.Test;
@@ -28,7 +29,8 @@ public class ApiQueryTests
 		};
 		
 		var queryStr = await query.GetEndpointWithParams();
-		Assert.AreEqual("/test?param=test&other=false", queryStr);
+		//TODO: Convert to new assert syntax https://docs.nunit.org/articles/nunit/release-notes/Nunit4.0-MigrationGuide.html
+		ClassicAssert.AreEqual("/test?param=test&other=false", queryStr);
 	}
 
 	[Test]
@@ -40,6 +42,6 @@ public class ApiQueryTests
 		};
 		
 		var queryStr = await query.GetEndpointWithParams();
-		Assert.AreEqual("/test", queryStr);
+		ClassicAssert.AreEqual("/test", queryStr);
 	}
 }
