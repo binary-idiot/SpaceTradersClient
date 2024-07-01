@@ -1,4 +1,5 @@
-﻿using System.Net.Http.Json;
+﻿using System.Net.Http.Headers;
+using System.Net.Http.Json;
 using System.Text.Json;
 using SpaceTraders.Shared.Models.API;
 using SpaceTraders.Shared.Utilities;
@@ -99,6 +100,11 @@ public abstract class ApiService<TError> : IApiService where TError : ApiError
 			Method = method,
 			RequestUri = new Uri(_client.BaseAddress, (await apiQuery.GetEndpointWithParams()))
 		};
+
+		if (apiQuery.Authorization != null)
+		{
+			request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", apiQuery.Authorization);
+		}
 		
 		return AddRequestHeaders(request, apiQuery.Headers);
 	}

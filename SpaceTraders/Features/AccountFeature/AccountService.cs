@@ -15,9 +15,12 @@ public class AccountService : IDataService
 
 	public async Task<ApiResponse<Account>> GetAccount(string? token = "")
 	{
-		Dictionary<string, string> headers = (string.IsNullOrWhiteSpace(token))
-			? new Dictionary<string, string>()
-			: new Dictionary<string, string>() { { "Authorization", $"Bearer {token}" } };
-		return await _apiService.Get<Account>(new ApiQuery() { Endpoint = "my/account", Headers = headers});
+		ApiQuery query = new ApiQuery()
+		{
+			Endpoint = "my/agent",
+			Authorization = token
+		};
+		
+		return await _apiService.Get<Account>(query);
 	}
 }

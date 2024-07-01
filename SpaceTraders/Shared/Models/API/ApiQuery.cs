@@ -2,23 +2,13 @@
 
 public class ApiQuery
 {
-	private string _endpoint;
-	public string Endpoint
-	{
-		get => _endpoint;
-		set => _endpoint = (value.Length > 0 && value.Substring(0, 1) != "/")
-			? $"/{value}" : value;
-	}
+	private string _endpoint = String.Empty;
+	public string Endpoint { get; set; } = "";
 
-	public Dictionary<string, string> Params { get; set; }
-	public Dictionary<string, string> Headers { get; set; }
+	public Dictionary<string, string> Params { get; set; } = new();
+	public Dictionary<string, string> Headers { get; set; } = new();
+	public string? Authorization { get; set; } = null;
 
-	public ApiQuery()
-	{
-		_endpoint = String.Empty;
-		Params = new Dictionary<string, string>();
-		Headers = new Dictionary<string, string>();
-	}
 	public async Task<string> GetEndpointWithParams()
 	{
 		if (Params.Count < 1)
