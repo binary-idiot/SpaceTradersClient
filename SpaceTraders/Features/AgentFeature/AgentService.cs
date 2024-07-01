@@ -2,18 +2,18 @@
 using SpaceTraders.Shared.Services;
 using SpaceTraders.Shared.Services.API;
 
-namespace SpaceTraders.Features.AccountFeature;
+namespace SpaceTraders.Features.AgentFeature;
 
-public class AccountService : IDataService
+public class AgentService : IDataService
 {
 	private readonly GameApiService _apiService;
 
-	public AccountService(GameApiService apiService)
+	public AgentService(GameApiService apiService)
 	{
 		_apiService = apiService;
 	}
 
-	public async Task<ApiResponse<Account>> GetAccount(string? token = "")
+	public async Task<ApiResponse<Agent>> GetAgent(string? token = "")
 	{
 		ApiQuery query = new ApiQuery()
 		{
@@ -21,6 +21,6 @@ public class AccountService : IDataService
 			Authorization = token
 		};
 		
-		return await _apiService.Get<Account>(query);
+		return await _apiService.Get<Agent>(query);
 	}
 }

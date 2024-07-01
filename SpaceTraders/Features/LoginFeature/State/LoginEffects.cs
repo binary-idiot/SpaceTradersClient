@@ -1,6 +1,6 @@
 ﻿using Fluxor;
-using SpaceTraders.Features.AccountFeature;
-using SpaceTraders.Features.AccountFeature.State;
+using SpaceTraders.Features.AgentFeature;
+using SpaceTraders.Features.AgentFeature.State;
 using SpaceTraders.Shared.Models;
 using SpaceTraders.Shared.Models.API;
 
@@ -40,15 +40,15 @@ public class LoginEffects
 		try
 		{
 			LoginService? loginService = scope.ServiceProvider.GetRequiredService<LoginService>();
-			AccountService? accountService = scope.ServiceProvider.GetRequiredService<AccountService>();
-			ApiResponse<Account> accountResponse = await accountService.GetAccount(action.Login.Token);
+			AgentService? accountService = scope.ServiceProvider.GetRequiredService<AgentService>();
+			ApiResponse<Agent> accountResponse = await accountService.GetAgent(action.Login.Token);
 
 			if (accountResponse.Success)
 			{
 				action.Login.Username = accountResponse.Result.Username;
 				await loginService.SetSavedLogin(action.Login);
 				dispatcher.Dispatch(new LoginSuccessAction(action.Login));
-				dispatcher.Dispatch(new GetAccountSuccessAction(accountResponse.Result));
+				dispatcher.Dispatch(new GetAgentSuccessAction(accountResponse.Result));
 			}
 			else
 			{

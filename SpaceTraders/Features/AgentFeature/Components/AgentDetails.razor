@@ -1,0 +1,12 @@
+﻿@using SpaceTraders.Features.AgentFeature.State
+@using Fluxor
+@inject IState<AgentState> AccountState
+
+<div>
+    <div>Username: @AccountState.Value?.Agent?.Username</div>
+    <div>Credits: @AccountState.Value?.Agent?.Credits</div>
+</div>
+
+@code {
+    
+}

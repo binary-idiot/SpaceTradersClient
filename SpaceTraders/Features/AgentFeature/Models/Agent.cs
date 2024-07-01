@@ -1,8 +1,8 @@
 ﻿using SpaceTraders.Shared.Models;
 
-namespace SpaceTraders.Features.AccountFeature;
+namespace SpaceTraders.Features.AgentFeature;
 
-public class Account
+public class Agent
 {
 	public int Credits { get; set; }
 	public DateTime JoinedAt { get; set; }
