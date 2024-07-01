@@ -52,7 +52,7 @@
 
     private void SwitchMode()
     {
-        UpdateLogin((SignUp) ? LoginState.Value.Login : null);
+        SignUp = !SignUp;
     }
     
     private void UpdateLogin(Login? login = null)
