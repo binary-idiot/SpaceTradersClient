@@ -3,8 +3,12 @@
 @inject IState<AgentState> AccountState
 
 <div>
-    <div>Username: @AccountState.Value?.Agent?.Username</div>
+    <div>Account ID: @AccountState.Value?.Agent?.AccountId</div>
+    <div>Agent: @AccountState.Value?.Agent?.Symbol</div>
+    <div>Headquarters: @AccountState.Value?.Agent?.Headquarters</div>
     <div>Credits: @AccountState.Value?.Agent?.Credits</div>
+    <div>Faction: @AccountState.Value?.Agent?.StartingFaction</div>
+    <div>Ship Count: @AccountState.Value?.Agent?.ShipCount</div>
 </div>
 
 @code {

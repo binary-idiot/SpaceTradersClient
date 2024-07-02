@@ -6,9 +6,10 @@ public class AgentModelMapper : ModelMapper<Agent> { }
 
 public class Agent
 {
+	public string AccountId { get; set; }
+	public string Symbol { get; set; }
+	public string Headquarters { get; set; }
 	public int Credits { get; set; }
-	public DateTime JoinedAt { get; set; }
+	public string StartingFaction { get; set; }
 	public int ShipCount { get; set; }
-	public int StructureCount { get; set; }
-	public string Username { get; set; }
 }

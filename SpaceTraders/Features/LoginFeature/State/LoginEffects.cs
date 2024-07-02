@@ -45,7 +45,7 @@ public class LoginEffects
 
 			if (accountResponse.Success)
 			{
-				action.Login.Username = accountResponse.Result.Username;
+				action.Login.Username = accountResponse.Result.Symbol;
 				await loginService.SetSavedLogin(action.Login);
 				dispatcher.Dispatch(new LoginSuccessAction(action.Login));
 				dispatcher.Dispatch(new GetAgentSuccessAction(accountResponse.Result));
