@@ -1,5 +1,5 @@
 ﻿using System.Net.Http.Json;
-using SpaceTraders.Shared.Models;
+using SpaceTraders.Shared.Models.Game;
 using SpaceTraders.Shared.Utilities.Mappers;
 
 namespace SpaceTraders.Features.StatusFeature;

@@ -1,7 +1,7 @@
 ﻿using System.Net.Http.Headers;
 using System.Net.Http.Json;
-using SpaceTraders.Shared.Models;
 using SpaceTraders.Shared.Models.API;
+using SpaceTraders.Shared.Models.Game;
 using SpaceTraders.Shared.Utilities.Mappers;
 
 namespace SpaceTraders.Shared.Services.API;

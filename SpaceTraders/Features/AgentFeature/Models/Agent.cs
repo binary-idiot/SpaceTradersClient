@@ -1,4 +1,5 @@
-﻿using SpaceTraders.Shared.Utilities.Mappers;
+﻿using SpaceTraders.Shared.Models.Game;
+using SpaceTraders.Shared.Utilities.Mappers;
 
 namespace SpaceTraders.Features.AgentFeature;
 

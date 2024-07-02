@@ -1,4 +1,4 @@
-﻿namespace SpaceTraders.Shared.Models;
+﻿namespace SpaceTraders.Shared.Models.Game;
 
 public record ServerData<TModel>
 {

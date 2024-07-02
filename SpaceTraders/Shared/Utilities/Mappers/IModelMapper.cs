@@ -1,4 +1,4 @@
-﻿using SpaceTraders.Shared.Models;
+﻿using SpaceTraders.Shared.Models.Game;
 
 namespace SpaceTraders.Shared.Utilities.Mappers;
 public interface IModelMapper {}

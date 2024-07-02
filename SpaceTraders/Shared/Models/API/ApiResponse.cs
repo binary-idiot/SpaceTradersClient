@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using SpaceTraders.Shared.Models.Game;
 
 namespace SpaceTraders.Shared.Models.API;
 
