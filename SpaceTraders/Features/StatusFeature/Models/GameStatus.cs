@@ -1,15 +1,8 @@
 ﻿using System.Net.Http.Json;
+using SpaceTraders.Shared.Models;
 using SpaceTraders.Shared.Utilities.Mappers;
 
 namespace SpaceTraders.Features.StatusFeature;
-
-public class GameStatusModelMapper : ModelMapper<GameStatus>
-{
-	public override async Task<GameStatus?> MapToClient(HttpContent content)
-	{
-		return await content.ReadFromJsonAsync<GameStatus>();
-	}
-}
 
 public class GameStatus
 {
@@ -72,4 +65,20 @@ public class GameLink
 {
 	public string Name { get; set; }
 	public string Url { get; set; }
+}
+
+public class GameStatusModelMapper : IModelMapper<GameStatus>
+{
+	public async Task<ServerData<GameStatus>> MapToClient(HttpContent content)
+	{
+		return new ServerData<GameStatus>()
+		{
+			Data = await content.ReadFromJsonAsync<GameStatus>()
+		};
+	}
+
+	public HttpContent MapToServer(GameStatus model)
+	{
+		throw new NotImplementedException();
+	}
 }

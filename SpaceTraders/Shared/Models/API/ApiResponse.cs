@@ -11,4 +11,5 @@ public class ApiResponse<TResult>
 
 	public TResult? Result { get; set; }
 	public object? Error { get; set; }
+	public ServerMetaData? Meta { get; set; }
 }

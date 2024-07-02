@@ -1,8 +1,7 @@
 ﻿using System.Net.Http.Headers;
 using System.Net.Http.Json;
-using System.Text.Json;
+using SpaceTraders.Shared.Models;
 using SpaceTraders.Shared.Models.API;
-using SpaceTraders.Shared.Utilities;
 using SpaceTraders.Shared.Utilities.Mappers;
 
 namespace SpaceTraders.Shared.Services.API;
@@ -60,8 +59,9 @@ public abstract class ApiService<TError> : IApiService where TError : ApiError
 			if (apiResponse.Success)
 			{
 				IModelMapper<TResult> mapper = GetMapper<TResult>();
-				
-				apiResponse.Result = await mapper.MapToClient(response.Content);
+				ServerData<TResult> serverData = await mapper.MapToClient(response.Content);
+				apiResponse.Result = serverData.Data;
+				apiResponse.Meta = serverData.Meta;
 				_logger.LogDebug($"Request to {request.RequestUri} successful with code {response.StatusCode}");
 				return apiResponse;
 			}

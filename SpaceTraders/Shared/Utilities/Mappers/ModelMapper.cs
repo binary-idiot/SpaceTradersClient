@@ -1,27 +1,22 @@
 ﻿using System.Net.Http.Json;
+using SpaceTraders.Shared.Models;
 
 namespace SpaceTraders.Shared.Utilities.Mappers;
 
 public abstract class ModelMapper<TModel> : IModelMapper<TModel>
 {
-	private record DataWrapper
+	private record ServerRequest
 	{
 		public TModel Data { get; init; }
 	}
 	
-	public virtual async Task<TModel?> MapToClient(HttpContent content)
+	public virtual async Task<ServerData<TModel>> MapToClient(HttpContent content)
 	{
-		DataWrapper? data = await content.ReadFromJsonAsync<DataWrapper>();
-		return data != null ? data.Data : default;
+		return await content.ReadFromJsonAsync<ServerData<TModel>>();
 	}
 
 	public virtual HttpContent MapToServer(TModel model)
 	{
-		DataWrapper data = new DataWrapper()
-		{
-			Data = model
-		};
-		
-		return JsonContent.Create(data);
+		return JsonContent.Create(new ServerRequest(){ Data = model });
 	}
 }
