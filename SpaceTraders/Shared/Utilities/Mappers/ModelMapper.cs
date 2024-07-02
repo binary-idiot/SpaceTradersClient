@@ -4,13 +4,24 @@ namespace SpaceTraders.Shared.Utilities.Mappers;
 
 public abstract class ModelMapper<TModel> : IModelMapper<TModel>
 {
+	private record DataWrapper
+	{
+		public TModel Data { get; init; }
+	}
+	
 	public virtual async Task<TModel?> MapToClient(HttpContent content)
 	{
-		return await content.ReadFromJsonAsync<TModel>();
+		DataWrapper? data = await content.ReadFromJsonAsync<DataWrapper>();
+		return data != null ? data.Data : default;
 	}
 
 	public virtual HttpContent MapToServer(TModel model)
 	{
-		return JsonContent.Create(model);
+		DataWrapper data = new DataWrapper()
+		{
+			Data = model
+		};
+		
+		return JsonContent.Create(data);
 	}
 }

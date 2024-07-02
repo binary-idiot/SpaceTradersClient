@@ -1,4 +1,15 @@
-﻿namespace SpaceTraders.Features.StatusFeature;
+﻿using System.Net.Http.Json;
+using SpaceTraders.Shared.Utilities.Mappers;
+
+namespace SpaceTraders.Features.StatusFeature;
+
+public class GameStatusModelMapper : ModelMapper<GameStatus>
+{
+	public override async Task<GameStatus?> MapToClient(HttpContent content)
+	{
+		return await content.ReadFromJsonAsync<GameStatus>();
+	}
+}
 
 public class GameStatus
 {

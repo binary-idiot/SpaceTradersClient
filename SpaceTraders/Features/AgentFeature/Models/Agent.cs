@@ -1,6 +1,8 @@
-﻿using SpaceTraders.Shared.Models;
+﻿using SpaceTraders.Shared.Utilities.Mappers;
 
 namespace SpaceTraders.Features.AgentFeature;
+
+public class AgentModelMapper : ModelMapper<Agent> { }
 
 public class Agent
 {
